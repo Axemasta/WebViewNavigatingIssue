@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace WebViewCancelExample.Pages
 {
-    public class CodeBehindAsyncPage : ContentPage
+    public class CodeBehindBlockThreadPage : ContentPage
     {
         private readonly ISiteValidatorAsync _siteValidator;
 
@@ -14,12 +14,12 @@ namespace WebViewCancelExample.Pages
             Source = "https://google.co.uk"
         };
 
-        public CodeBehindAsyncPage(ISiteValidatorAsync asyncValidator)
+        public CodeBehindBlockThreadPage(ISiteValidatorAsync asyncValidator)
         {
             _siteValidator = asyncValidator;
 
-            Title = "Code Behind Async";
-            IconImageSource = FileImageSource.FromFile("code_branch_solid");
+            Title = "Code Behind Block Thread";
+            //IconImageSource = FileImageSource.FromFile("code_branch_solid");
 
             Content = MyWebView;
 
@@ -27,16 +27,18 @@ namespace WebViewCancelExample.Pages
             MyWebView.Navigated += OnNavigated;
         }
 
-        private async void OnNavigating(object sender, WebNavigatingEventArgs e)
+        private void OnNavigating(object sender, WebNavigatingEventArgs e)
         {
-            var allowed = await _siteValidator.IsSiteAllowed(e.Url);
+            var t = _siteValidator.IsSiteAllowed(e.Url);
+            t.Wait();
+            var allowed = t.Result;
 
             e.Cancel = !allowed;
         }
 
         private async void OnNavigated(object sender, WebNavigatedEventArgs e)
         {
-            Debug.WriteLine($"CodeBehindAsyncPage - Navigated to site: {e.Url}");
+            Debug.WriteLine($"CodeBehindBlockThreadPage - Navigated to site: {e.Url}");
 
             var allowed = await _siteValidator.IsSiteAllowed(e.Url);
 

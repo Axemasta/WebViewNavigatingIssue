@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using WebViewCancelExample.Services;
 using Xamarin.Forms;
 
@@ -35,6 +36,8 @@ namespace WebViewCancelExample.Pages
 
         private async void OnNavigated(object sender, WebNavigatedEventArgs e)
         {
+            Debug.WriteLine($"CodeBehindSyncPage - Navigated to site: {e.Url}");
+
             var allowed = _siteValidator.IsSiteAllowed(e.Url);
 
             if (!allowed)

@@ -29,6 +29,7 @@ namespace WebViewCancelExample
 
             tabbedPage.Children.Add(new CodeBehindSyncPage(siteValidator));
             tabbedPage.Children.Add(new CodeBehindAsyncPage(asyncValidator));
+            //tabbedPage.Children.Add(new CodeBehindBlockThreadPage(asyncValidator));
 
             PlatformHelper.SetPlatformStyling(tabbedPage);
             tabbedPage.SelectedTabColor = Color.White;
