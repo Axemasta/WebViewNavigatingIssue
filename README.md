@@ -1,5 +1,7 @@
 # WebView Navigating Issue
-Sample repository for an issue I've come across with the Xamarin.Forms.WebView Navigating method.
+![Issue Status](https://img.shields.io/github/issues/detail/state/xamarin/Xamarin.Forms/12720)
+
+Sample repository for an issue I've come across with the Xamarin.Forms.WebView Navigating method, see the issue [here](https://github.com/xamarin/Xamarin.Forms/issues/12720).
 
 
 
